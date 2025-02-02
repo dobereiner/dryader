@@ -18,7 +18,7 @@ def test_download_files_parallel(mock_file_download, tmp_path):
 
     file_links = [('https://datadryad.org/files/123/download', str(output_dir / "test_file.txt"))]
 
-    download_files_parallel(file_links, num_threads=1)
+    download_files_parallel(file_links, max_workers=1)
 
     downloaded_file = output_dir / "test_file.txt"
     assert downloaded_file.exists()
