@@ -7,7 +7,6 @@ It provides a simple command-line interface (CLI) and Python API for fetching da
 ## Features
 - Download DRYAD datasets via DOI
 - Parallel downloads
-- Cross-platform support
 - CLI and Python API
 
 ## Installation
