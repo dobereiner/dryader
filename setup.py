@@ -23,7 +23,7 @@ setup(
     python_requires='>=3.7',
     entry_points={
         'console_scripts': [
-            'dryader-cli=scripts.dryader-cli:main',
+            'dryader-cli=dryader.cli:main',
         ]
     },
 )
