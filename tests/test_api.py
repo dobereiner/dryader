@@ -2,6 +2,7 @@ import pytest
 import requests_mock
 from dryader.api import get_file_links
 
+
 @pytest.fixture
 def mock_dryad_api():
     with requests_mock.Mocker() as m:

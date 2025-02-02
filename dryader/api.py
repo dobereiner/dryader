@@ -5,11 +5,11 @@ DRYAD_API_BASE = 'https://datadryad.org/api/v2'
 
 
 def get_file_links(dataset_doi):
-    '''
+    """
     Fetches a list of file download links for a given dataset DOI.
     :param dataset_doi: DOI of the dataset (e.g., '10.5061/dryad.8pk0p2ns8').
     :return: List of tuples (download_url, filename).
-    '''
+    """
     dataset_doi_encoded = dataset_doi.replace(':', '%3A').replace('/', '%2F')
     url = f'{DRYAD_API_BASE}/datasets/doi%3A{dataset_doi_encoded}/versions'
     
@@ -18,7 +18,7 @@ def get_file_links(dataset_doi):
     data = response.json()
 
     if '_embedded' not in data or 'stash:versions' not in data['_embedded']:
-        raise ValueError(f'⚠ No versions found for DOI {dataset_doi}')
+        raise ValueError(f'No versions found for DOI {dataset_doi}')
     
     versions = data['_embedded']['stash:versions']
     
@@ -28,7 +28,7 @@ def get_file_links(dataset_doi):
     latest_version_id = re.search(r'/versions/(\d+)', latest_version_href).group(1)
     
     if not latest_version_id:
-        raise ValueError(f'⚠ Could not determine latest version ID for DOI {dataset_doi}')
+        raise ValueError(f'Could not determine latest version ID for DOI {dataset_doi}')
     
     print(f'Using dataset version ID: {latest_version_id}')
 
@@ -48,7 +48,7 @@ def get_file_links(dataset_doi):
             filename = file['path']
             file_links.append((download_url, filename))
         
-        if 'next' not in data['_links']:  # Stop if there are no more pages
+        if 'next' not in data['_links']:
             break
         page += 1
 

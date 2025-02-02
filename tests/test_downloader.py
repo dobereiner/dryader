@@ -3,6 +3,7 @@ import requests_mock
 import os
 from dryader.downloader import download_files_parallel
 
+
 @pytest.fixture
 def mock_file_download():
     """ Mock file download """
