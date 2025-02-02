@@ -1,5 +1,4 @@
 import requests
-import os
 
 DRYAD_API_BASE = 'https://datadryad.org/api/v2'
 
@@ -18,9 +17,12 @@ def get_file_links(dataset_doi):
     versions = response.json()
     
     if not versions:
-        raise ValueError(f'No versions found for DOI {dataset_doi}')
+        raise ValueError(f'⚠ No versions found for DOI {dataset_doi}')
 
-    latest_version_id = versions[-1]['id']  # Fetch the latest version
+    latest_version_id = versions[-1].get('id')
+    if not latest_version_id:
+        raise ValueError(f'⚠ Could not determine latest version ID for DOI {dataset_doi}')
+    
     print(f'Using dataset version ID: {latest_version_id}')
 
     file_links = []
