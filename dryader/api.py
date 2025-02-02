@@ -14,12 +14,16 @@ def get_file_links(dataset_doi):
     
     response = requests.get(url, headers={'Accept': 'application/json'})
     response.raise_for_status()
-    versions = response.json()
-    
-    if not versions:
-        raise ValueError(f'⚠ No versions found for DOI {dataset_doi}')
+    data = response.json()
 
-    latest_version_id = versions[-1].get('id')
+    if '_embedded' not in data or 'stash:versions' not in data['_embedded']:
+        raise ValueError(f'⚠ No versions found for DOI {dataset_doi}')
+    
+    versions = data['_embedded']['stash:versions']
+    
+    latest_version = versions[-1]
+    latest_version_id = latest_version.get('id')
+    
     if not latest_version_id:
         raise ValueError(f'⚠ Could not determine latest version ID for DOI {dataset_doi}')
     
