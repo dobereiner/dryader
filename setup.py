@@ -12,8 +12,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'requests',
-        'tqdm',
-        're'
+        'tqdm'
     ],
     classifiers=[
         'Programming Language :: Python :: 3',
