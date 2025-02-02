@@ -1,3 +1,29 @@
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "dryader"
+version = "0.1.0"
+description = "A Python library for downloading datasets from DRYAD"
+authors = [{ name = "dobereiner", email = "takulagin@gmail.com" }]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.7"
+dependencies = [
+    "requests",
+    "tqdm"
+]
+
+[project.urls]
+Homepage = "https://github.com/dobereiner/dryader"
+Repository = "https://github.com/dobereiner/dryader"
+
+[project.scripts]
+dryader = "dryader.cli:main"
+
+[tool.setuptools]
+packages = ["dryader"]
+
+[tool.setuptools.packages.find]
+include = ["dryader*"]
