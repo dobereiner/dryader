@@ -24,6 +24,3 @@ dryader = "dryader.cli:main"
 
 [tool.setuptools]
 packages = ["dryader"]
-
-[tool.setuptools.packages.find]
-include = ["dryader*"]
