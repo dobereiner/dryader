@@ -1,4 +1,5 @@
 import requests
+import re
 
 DRYAD_API_BASE = 'https://datadryad.org/api/v2'
 
@@ -22,7 +23,9 @@ def get_file_links(dataset_doi):
     versions = data['_embedded']['stash:versions']
     
     latest_version = versions[-1]
-    latest_version_id = latest_version.get('id')
+
+    latest_version_href = latest_version['_links']['self']['href']
+    latest_version_id = re.search(r'/versions/(\d+)', latest_version_href).group(1)
     
     if not latest_version_id:
         raise ValueError(f'⚠ Could not determine latest version ID for DOI {dataset_doi}')
