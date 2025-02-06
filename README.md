@@ -18,7 +18,7 @@ cd dryader
 pip install -e .
 ```
 
-### Install directly from GitHub
+### Install via pip
 ```bash
 pip install git+https://github.com/dobereiner/dryader.git
 ```
